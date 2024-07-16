@@ -20,7 +20,7 @@ def merge_files(file_paths, output_file):
 def process_file(in_file):
     with open(in_file, 'r') as file:
         data = json.load(file)
-        
+
     song_dict = []
     for entry in data:
         formatted_instance = {
@@ -33,5 +33,14 @@ def process_file(in_file):
 
     return song_dict
 
-    
 
+def streams_by_artist(data):
+    artist_dict = {}
+
+    for entry in data:
+        artist = entry["Artist"]
+        if artist not in artist_dict:
+            artist_dict[artist] = []
+        artist_dict[artist].append(entry)
+    
+    return artist_dict

@@ -1,6 +1,6 @@
 import json
 import os
-from data_fcts import merge_files, process_file
+from data_fcts import *
 
 # Update to take in user file paths
 file_paths = ["SH_20_21.json", "SH_21_22.json", "SH_22_23.json", "SH_23_24.json"]
@@ -10,3 +10,6 @@ print(f"Merged data written to '{file}")
 
 # processed list of dictionaries of each stream
 streams_dict = process_file(file)
+
+# list of streaming instances by artist
+streams_by_artist(streams_dict)
