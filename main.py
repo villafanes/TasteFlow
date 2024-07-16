@@ -17,15 +17,12 @@ streams_per_artist = streams_by_artist(streams_dict)
 # dict of artists and all-time stream counts
 artist_total_streams = artist_ct(streams_per_artist)
 
+artist_yearly_streams = artist_yr_ct(streams_per_artist)
+
 # dict of streaming instances by album
 streams_per_album = streams_by_album(streams_dict)
 
 # dict of streaming instances by album
 streams_per_song = streams_by_song(streams_dict)            
 
-i = 0
-for k,v in artist_total_streams.items():
-    print(f"{k}: {v}")
-    i+= 1
-    if i == 1000:
-        break
+print(artist_total_streams)
