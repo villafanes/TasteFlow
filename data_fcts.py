@@ -64,9 +64,9 @@ def artist_ct(data):
 def artist_yr_ct(data):
     yearly_counts = {}
 
-    for entry in data:
-        artist = entry['Artist']
-        year = entry['Date'][:4]  
+    for k,v in data:
+        artist = k
+        year = v['Date'][:4]  
 
         # creates key for artist
         if artist not in yearly_counts:
