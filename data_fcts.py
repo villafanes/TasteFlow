@@ -64,20 +64,21 @@ def artist_ct(data):
 def artist_yr_ct(data):
     yearly_counts = {}
 
-    for k,v in data:
-        artist = k
-        year = v['Date'][:4]  
+    for k,v in data.items():
+        for stream in v:
+            artist = k
+            year = stream['Date'][:4]  
 
-        # creates key for artist
-        if artist not in yearly_counts:
-            yearly_counts[artist] = {}
+            # creates key for artist
+            if artist not in yearly_counts:
+                yearly_counts[artist] = {}
 
-        # adds k,v pair into the inner dictionary for every new year in the data
-        if year not in yearly_counts[artist]:
-            yearly_counts[artist][year] = 0
+            # adds k,v pair into the inner dictionary for every new year in the data
+            if year not in yearly_counts[artist]:
+                yearly_counts[artist][year] = 0
 
-        # increments the count for the artist's streams in a specific year
-        yearly_counts[artist][year] += 1
+            # increments the count for the artist's streams in a specific year
+            yearly_counts[artist][year] += 1
 
     return yearly_counts
      
