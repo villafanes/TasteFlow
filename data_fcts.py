@@ -21,7 +21,7 @@ def process_file(in_file):
     with open(in_file, 'r') as file:
         data = json.load(file)
 
-    song_dict = []
+    stream_dict = []
     for entry in data:
         formatted_instance = {
             "Date": entry["ts"][:10],  # Extract YYYY-MM-DD from ts
@@ -29,11 +29,12 @@ def process_file(in_file):
             "Artist": entry["master_metadata_album_artist_name"],
             "Album": entry["master_metadata_album_album_name"]
         }
-        song_dict.append(formatted_instance)
+        stream_dict.append(formatted_instance)
 
-    return song_dict
+    return stream_dict
 
 
+# dictionary to store k,v where k is the artist, and v is every instance a song of their's was streamed
 def streams_by_artist(data):
     artist_dict = {}
 
@@ -47,6 +48,7 @@ def streams_by_artist(data):
     return artist_dict
 
 
+# dictionary to store k,v where k is the album + artist, and v is every instance a song on it was streamed
 def streams_by_album(data):
     album_dict = {}
 
@@ -61,3 +63,19 @@ def streams_by_album(data):
         album_dict[album_key].append(stream_inst)
     
     return album_dict
+
+
+def streams_by_song(data):
+    song_dict = {}
+
+    for entry in data:
+        song = entry["Song"]
+        artist = entry["Artist"]
+        song_key = f"{song} by {artist}"
+
+        if song_key not in song_dict:
+            song_dict[song_key] = []
+        stream_inst = {k: v for k, v in entry.items() if k != "Song" and k != "Artist"}
+        song_dict[song_key].append(stream_inst)
+    
+    return song_dict

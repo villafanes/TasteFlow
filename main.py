@@ -11,10 +11,20 @@ print(f"Merged data written to '{file}")
 # processed list of dictionaries of each stream
 streams_dict = process_file(file)
 
-# list of streaming instances by artist
+# dict of streaming instances by artist
 streams_per_artist = streams_by_artist(streams_dict)
 
-# list of streaming instances by album
+# dict of streaming instances by album
 streams_per_album = streams_by_album(streams_dict)
 
-            
+# dict of streaming instances by album
+streams_per_song = streams_by_song(streams_dict)            
+
+ex_pair = list(streams_per_song.items())[4]  
+song = ex_pair[0]
+stream_inst = ex_pair[1]
+
+print(f"Album Name: {song}")
+print("Songs:")
+for song in stream_inst:
+    print(f"Played on {song['Date']}, from the {song['Album']} album.")
