@@ -53,6 +53,7 @@ def artist_ct(data):
     for k,v in data.items():
         total_counts[k] = len(v)
 
+    artist_ct = {k: v for k, v in sorted(artist_ct.items(), key=lambda item: item[1], reverse=True)}
     return total_counts
 
 # dictionary to store k,v where k is the album + artist, and v is every instance a song on it was streamed

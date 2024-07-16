@@ -27,5 +27,5 @@ i = 0
 for k,v in artist_total_streams.items():
     print(f"{k}: {v}")
     i+= 1
-    if i == 10:
+    if i == 1000:
         break
