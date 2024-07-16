@@ -9,6 +9,7 @@ Objectives:
 - see number of times they've streamed a song ever and by year *
 - see their artists in order of most-least listened to ever and by year
 - see their ranking of albums (by artist) in order of most-least listened to
+- see their ranking of songs on each album in order of most-least listened to
     - achieved by grouping song streams by album
 
     TBD:

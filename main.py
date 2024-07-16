@@ -25,6 +25,3 @@ streams_per_album = streams_by_album(streams_dict)
 
 # dict of streaming instances by album
 streams_per_song = streams_by_song(streams_dict)            
-
-ex_pair = next(iter(artist_yearly_streams.items()))
-print(ex_pair)
