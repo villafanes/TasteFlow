@@ -8,4 +8,5 @@ file = "full_spotify_streaming_history_samvilla.json"
 merge_files(file_paths, file)
 print(f"Merged data written to '{file}")
 
-proc_file = process_file(file)
+# processed list of dictionaries of each stream
+streams_dict = process_file(file)

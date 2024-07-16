@@ -1,5 +1,5 @@
 Objectives:
-- read through JSON file to get extract the date, song name, artist name, and album name from each streaming instance
+- read through JSON file to extract the date, song name, artist name, and album name from each streaming instance
     - store these in a dictionary with key-value pairs
 - group streaming instances by artist
 - within artist groupings, group by album
