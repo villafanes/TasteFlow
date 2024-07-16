@@ -47,6 +47,13 @@ def streams_by_artist(data):
     
     return artist_dict
 
+# dictionary to store artist: number of streams ever
+def artist_ct(data):
+    total_counts = {}
+    for k,v in data.items():
+        total_counts[k] = len(v)
+
+    return total_counts
 
 # dictionary to store k,v where k is the album + artist, and v is every instance a song on it was streamed
 def streams_by_album(data):
