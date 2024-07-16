@@ -14,6 +14,7 @@ streams_dict = process_file(file)
 # list of streaming instances by artist
 streams_per_artist = streams_by_artist(streams_dict)
 
+# list of streaming instances by album
 streams_per_album = streams_by_album(streams_dict)
-print(streams_per_album)   
+
             
