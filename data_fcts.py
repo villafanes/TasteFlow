@@ -45,3 +45,16 @@ def streams_by_artist(data):
         artist_dict[artist].append(stream_inst)
     
     return artist_dict
+
+
+def streams_by_album(data):
+    album_dict = {}
+
+    for entry in data:
+        album = entry["Album"] + " by " + entry["Artist"]
+        if album not in album_dict:
+            album_dict[album] = []
+        stream_inst = {k: v for k, v in entry.items() if k != "Artist" and k != "Album"}
+        album_dict[album].append(stream_inst)
+    
+    return album_dict

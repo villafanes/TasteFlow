@@ -12,7 +12,8 @@ print(f"Merged data written to '{file}")
 streams_dict = process_file(file)
 
 # list of streaming instances by artist
-ex = streams_by_artist(streams_dict)
-first_artist = next(iter(ex))
-print(f"Artist: {first_artist}")
-print(f"Streaming Instances: {ex[first_artist]}")
+streams_per_artist = streams_by_artist(streams_dict)
+
+streams_per_album = streams_by_album(streams_dict)
+print(streams_per_album)   
+            
