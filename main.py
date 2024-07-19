@@ -20,8 +20,29 @@ if files:
         df = pd.json_normalize(data)
         data_frames.append(df)
 
-    # combining all DataFrames into one
+    # combining all data frames into one
     streams_df = pd.concat(data_frames, ignore_index=True)
-    
+
+    # if an entry is not a song, exclude it from the data frame
+    streams_df = streams_df.dropna(subset=['master_metadata_track_name'])
+
+    # only keeping the date, song, artist, and album columns
+    filtered_cols = [
+        'ts',
+        'master_metadata_trackname',
+        'master_metadata_album_artist_name',
+        'master_metadata_album_album_name'
+    ]
+    streams_df = streams_df[filtered_cols]
+
+    # renaming
+    renamed_cols = {
+        'ts': 'date',
+        'master_metadata_trackname': 'song',
+        'master_metadata_album_artist_name': 'artist',
+        'master_metadata_album_album_name': 'album'
+    }
+    streams_df = streams_df.rename(columns=renamed_cols)
+
     # display
     st.write(streams_df)
