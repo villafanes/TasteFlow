@@ -29,7 +29,7 @@ if files:
     # only keeping the date, song, artist, and album columns
     filtered_cols = [
         'ts',
-        'master_metadata_trackname',
+        'master_metadata_track_name',
         'master_metadata_album_artist_name',
         'master_metadata_album_album_name'
     ]
@@ -38,7 +38,7 @@ if files:
     # renaming
     renamed_cols = {
         'ts': 'date',
-        'master_metadata_trackname': 'song',
+        'master_metadata_track_name': 'song',
         'master_metadata_album_artist_name': 'artist',
         'master_metadata_album_album_name': 'album'
     }
