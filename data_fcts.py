@@ -40,12 +40,12 @@ def process_file(in_file):
 def streams_by_artist(data):
     artist_dict = {}
 
-    for entry in data:
-        artist = entry["Artist"]
+    for index, row in data.iterrows():
+        artist = row["Artist"]
         if artist not in artist_dict:
             artist_dict[artist] = []
 
-        stream_inst = {k: v for k, v in entry.items() if k != "Artist"} # stores song name, date played, and album
+        stream_inst = row.drop("Artist").to_dict()  # Convert the row to a dictionary excluding "Artist"
         artist_dict[artist].append(stream_inst)
     
     return artist_dict

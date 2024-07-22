@@ -3,6 +3,7 @@ import os
 from data_fcts import *
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 
 st.title('Full Spotify Listening History')
 
@@ -37,12 +38,34 @@ if files:
 
     # renaming
     renamed_cols = {
-        'ts': 'date',
-        'master_metadata_track_name': 'song',
-        'master_metadata_album_artist_name': 'artist',
-        'master_metadata_album_album_name': 'album'
+        'ts': 'Date',
+        'master_metadata_track_name': 'Song',
+        'master_metadata_album_artist_name': 'Artist',
+        'master_metadata_album_album_name': 'Album'
     }
     streams_df = streams_df.rename(columns=renamed_cols)
 
-    # display
-    st.write(streams_df)
+   # Convert 'Date' column to datetime
+    streams_df['Date'] = pd.to_datetime(streams_df['Date'])
+
+    # Generate artist stats
+    artist_stats = streams_by_artist(streams_df)
+
+    # Select artist
+    select_artist = st.selectbox("Select an artist", options=list(artist_stats.keys()))
+
+    # Filter data for selected artist
+    artist_data = streams_df[streams_df['Artist'] == select_artist]
+
+    # Create scatter plot
+    artist_fig = px.scatter(artist_data, x='Date', y='Song',
+                            hover_data=['Song', 'Album', 'Date'],
+                            title=f"Streaming History of {select_artist}",
+                            labels={'Date': 'Date', 'Song': 'Song'},
+                            template='plotly_white')
+
+    # Update layout for better readability
+    artist_fig.update_layout(xaxis_title="Date",
+                             xaxis=dict(tickformat="%b %Y"))
+
+    st.plotly_chart(artist_fig)
