@@ -39,7 +39,8 @@ def process_file(in_file):
 # dictionary to store k,v where k is the artist, and v is every instance a song of theirs was streamed
 def streams_by_artist(data):
     artist_dict = {}
-
+    
+    # supports pandas dataframe input
     for index, row in data.iterrows():
         artist = row["Artist"]
         if artist not in artist_dict:

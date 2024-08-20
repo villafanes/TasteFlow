@@ -1,13 +1,25 @@
 import json
 import os
+
+from altair import themes
 from data_fcts import *
 import pandas as pd
 import streamlit as st
 import plotly.express as px
 
+bg_color = '''
+<style>
+body {
+    background-color: #86DF82;
+}
+</style>
+'''
+
+st.markdown(bg_color, unsafe_allow_html=True)
 st.title('Welcome to TasteFlow')
 
 files = st.file_uploader("Upload JSON listening files", type="json", accept_multiple_files=True)
+
 
 if files:
     # storing pandas data frames
